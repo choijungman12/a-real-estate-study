@@ -1,4 +1,5 @@
 import { useState, type ComponentType } from 'react'
+import { Link } from 'react-router-dom'
 import {
   FileText,
   Video,
@@ -257,9 +258,10 @@ export default function Resources() {
               {sorted.map(r => {
                 const Icon = typeIcon[r.type]
                 return (
-                  <div
+                  <Link
                     key={r.title}
-                    className="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition"
+                    to={`/resources/${active}/${encodeURIComponent(r.title)}`}
+                    className="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition block group"
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center">
@@ -289,11 +291,11 @@ export default function Resources() {
                         {r.downloads.toLocaleString()}
                       </span>
                     </div>
-                    <button className="w-full bg-primary hover:bg-secondary text-white py-2.5 rounded-button text-sm font-semibold transition inline-flex items-center justify-center gap-2">
-                      <Download size={16} />
-                      다운로드
-                    </button>
-                  </div>
+                    <div className="w-full bg-primary group-hover:bg-secondary text-white py-2.5 rounded-button text-sm font-semibold transition inline-flex items-center justify-center gap-2">
+                      <BookOpen size={16} />
+                      강의 보기
+                    </div>
+                  </Link>
                 )
               })}
             </div>
