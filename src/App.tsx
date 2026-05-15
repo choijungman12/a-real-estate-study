@@ -10,6 +10,7 @@ import Community from './pages/Community'
 import MyPage from './pages/MyPage'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
+import MapPage from './pages/Map'
 import NotFound from './pages/NotFound'
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="mypage" element={<MyPage />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login />} />
+          <Route path="map" element={<MapPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

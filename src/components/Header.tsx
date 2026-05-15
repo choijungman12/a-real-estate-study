@@ -1,15 +1,15 @@
 import { Link, NavLink } from 'react-router-dom'
 import { useState } from 'react'
-import { Menu, X, Building2 } from 'lucide-react'
+import { Menu, X, Building2, User as UserIcon } from 'lucide-react'
 
 const NAV = [
   { to: '/', label: '홈' },
   { to: '/about', label: '스터디 소개' },
   { to: '/curriculum', label: '스터디 과정' },
   { to: '/challenge', label: '챌린지' },
+  { to: '/map', label: 'AI 지도' },
   { to: '/resources', label: '자료실' },
   { to: '/community', label: '커뮤니티' },
-  { to: '/mypage', label: '마이페이지' },
 ]
 
 export default function Header() {
@@ -29,7 +29,7 @@ export default function Header() {
             </div>
           </Link>
 
-          <nav className="hidden lg:flex items-center space-x-7">
+          <nav className="hidden lg:flex items-center space-x-5 xl:space-x-7">
             {NAV.map(l => (
               <NavLink
                 key={l.to}
@@ -46,9 +46,12 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 lg:space-x-3">
+            <Link to="/mypage" title="마이페이지" className="hidden lg:inline-flex w-9 h-9 items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+              <UserIcon size={18} />
+            </Link>
             <Link to="/login" className="hidden sm:inline text-slate-600 hover:text-slate-900 transition-colors font-medium text-sm">로그인</Link>
-            <Link to="/signup" className="bg-primary hover:bg-blue-600 text-white px-4 lg:px-6 py-2 rounded-button whitespace-nowrap transition-colors font-semibold text-sm">스터디 가입</Link>
+            <Link to="/signup" className="bg-primary hover:bg-blue-600 text-white px-3 lg:px-5 py-2 rounded-button whitespace-nowrap transition-colors font-semibold text-sm">스터디 가입</Link>
             <button className="lg:hidden p-2 -mr-2" onClick={() => setOpen(!open)} aria-label="메뉴">
               {open ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -70,6 +73,7 @@ export default function Header() {
                 {l.label}
               </NavLink>
             ))}
+            <NavLink to="/mypage" onClick={() => setOpen(false)} className={({isActive}) => `px-3 py-2 rounded ${isActive ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-700 hover:bg-slate-50'}`}>마이페이지</NavLink>
             <Link to="/login" onClick={() => setOpen(false)} className="px-3 py-2 text-slate-700 hover:bg-slate-50 rounded">로그인</Link>
           </nav>
         )}
