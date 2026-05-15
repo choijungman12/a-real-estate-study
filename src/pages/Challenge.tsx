@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   Trophy,
   DollarSign,
@@ -605,6 +606,7 @@ const STATS_BOTTOM = [
 ]
 
 export default function Challenge() {
+  const navigate = useNavigate()
   const [tab, setTab] = useState<TabKey>('monthly')
   const [selected, setSelected] = useState<Challenge | null>(null)
   const [submitted, setSubmitted] = useState(false)
@@ -740,14 +742,14 @@ export default function Challenge() {
 
                 <button
                   disabled={c.status === '완료'}
-                  onClick={() => setSelected(c)}
-                  className={`w-full py-3 rounded-button font-semibold transition ${
+                  onClick={() => c.status !== '완료' && navigate(`/challenge/${c.id}`)}
+                  className={`w-full py-3 rounded-button font-semibold transition inline-flex items-center justify-center gap-2 ${
                     c.status === '완료'
                       ? 'bg-slate-200 text-slate-500 cursor-not-allowed'
                       : 'bg-primary hover:bg-secondary text-white'
                   }`}
                 >
-                  {c.status === '완료' ? '종료된 챌린지' : '참여하기'}
+                  {c.status === '완료' ? '종료된 챌린지' : '🎮 챌린지 도전하기'}
                 </button>
               </div>
             ))}
